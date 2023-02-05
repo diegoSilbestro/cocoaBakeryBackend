@@ -6,11 +6,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 
-const indexRouter = require('./routes/index');
-const productsRouter = require('./routes/products');
-const cartRouter = require('./routes/cart')
-const { dbProductsConnection } = require('./db/dbProducts')
-const { dbCartConnection } = require('./db/dbCart');
+const indexRouter = require('../routes/index');
+const productsRouter = require('../routes/products');
+const cartRouter = require('../routes/cart')
+const { dbProductsConnection } = require('../db/dbProducts')
+const { dbCartConnection } = require('../db/dbCart');
 const { Server } = require('http');
 
 const app = express();
