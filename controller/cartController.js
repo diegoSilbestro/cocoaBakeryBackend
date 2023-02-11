@@ -1,16 +1,22 @@
 const { Cart } = require('../models/cart');
+const { validationResult } = require('express-validator');
 
 const cartController = {
 
     newItem: async (req, res) => {
         try {
-            const item = new Cart(req.body);
-            await item.save();
-            res.status(200).json(item);
-        } catch (err) {
+            const err = validationResult(req);
+            if (err.isEmpty()) {
+                const item = new Cart(req.body);
+                await item.save();
+                res.status(200).json({msg: "el producto fue guardado exitosamente ", item});
+            } else {
+                res.status(501).json({msg: "Error: ",err})
+            }
+        } catch (error) {
             res.status(501).json({
                 msg: 'No se pudo guardar el producto en la DB',
-                err,
+                error
             })
         }
     },
@@ -20,10 +26,15 @@ const cartController = {
     },
     editItem: async (req, res) => {
         try {
-            await Cart.findByIdAndUpdate(req.params.id, req.body)
-            res.status(200).json({ msg: 'Se actualizo el item' })
-        } catch (error) {
-            res.status(501).jsos({ err })
+            const err = validationResult(req);
+            if (err.isEmpty()) {
+                await Cart.findByIdAndUpdate(req.params.id, req.body)
+                res.status(200).json({ msg: 'Se actualizo el item' })
+            } else {
+                res.status(501).json({ err })
+            }
+        } catch (err) {
+            res.status(501).json({ err })
         }
 
     },
