@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //CORS
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: 'https://cocoa-bakery-liiewc2vf-diegosilbestro.vercel.app' }));
 app.use((req, res, next)=> {
-    res.header('Access-control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-control-Allow-Origin', 'https://cocoa-bakery-liiewc2vf-diegosilbestro.vercel.app');
     res.header('Access-control-Allow-Credentials', 'true');
     res.header(
         'Access-control-Allow-Headers',
