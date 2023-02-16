@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //CORS
-app.use(cors({ origin: 'https://cocoa-bakery-qmq6.vercel.app/' }));
+app.use(cors({ origin: 'https://cocoa-bakery-qmq6.vercel.app' }));
 app.use((req, res, next)=> {
-    res.header('Access-control-Allow-Origin', 'https://cocoa-bakery-qmq6.vercel.app/');
+    res.header('Access-control-Allow-Origin', 'https://cocoa-bakery-qmq6.vercel.app');
     res.header('Access-control-Allow-Credentials', 'true');
     res.header(
         'Access-control-Allow-Headers',
